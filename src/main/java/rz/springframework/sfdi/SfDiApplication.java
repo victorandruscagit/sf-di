@@ -8,6 +8,7 @@ public class SfDiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SfDiApplication.class, args);
+		System.out.println("Log");
 	}
 
 }
