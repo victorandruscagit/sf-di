@@ -1,16 +1,22 @@
 package guru.springframework.sfgdi;
 
 import guru.springframework.sfgdi.controllers.*;
+import guru.springframework.sfgdi.datasource.FakeDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
+
 
 @ComponentScan(basePackages = {"com.springframework.pets", "guru.springframework.sfgdi"})
 @SpringBootApplication
 public class SfgDiApplication {
 
 	public static void main(String[] args) {
+
+
+
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
 
 		PetController petController = ctx.getBean("petController", PetController.class);
@@ -36,6 +42,11 @@ public class SfgDiApplication {
 		System.out.println("-------- Constructor" );
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println(constructorInjectedController.getGreeting());
+
+		FakeDataSource fakeDatasource = ctx.getBean(FakeDataSource.class);
+		System.out.println(fakeDatasource.getPassword());
+		System.out.println(fakeDatasource.getUserName());
+		System.out.println(fakeDatasource.getJdbcurl());
 	}
 
 }
